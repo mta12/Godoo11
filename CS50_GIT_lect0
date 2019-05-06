@@ -31,6 +31,9 @@ Quick setup — if you’ve done this kind of thing before
 or
 
 Get started by creating a new file or uploading an existing file. We recommend every repository include a README, LICENSE, and .gitignore.
+
+***
+
 …or create a new repository on the command line
 
 echo "# lecture0" >> README.md
@@ -40,11 +43,25 @@ git commit -m "first commit"
 git remote add origin https://github.com/mta12/lecture0.git
 git push -u origin master
 
+***
+
 …or push an existing repository from the command line
 
 git remote add origin https://github.com/mta12/lecture0.git
 git push -u origin master
 
+***
+
 …or import code from another repository
 
 You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
+
+***************
+Ce que j'ai fais
+git config --global user.name "mta12"
+git config --global user.email "tobiemanga@gmail.com"
+git add fichier
+git commit -m "message"
+git remote add origin https://github.com/mta12/Godoo11.git 	#Juste la première fois
+git push -u origin master
+
