@@ -1,0 +1,50 @@
+-----------Lecture 0-------
+Git
+    Utile pour gérer les différentes versions du code
+        Il traque tous les changements
+        synchronise le code entre plusieurs personnes
+        permet de retourner à des versions antérieures en cas d'erreur par exemple
+    faciliter la collaboration
+GitHub
+    Accès à Git sur l'Internet
+1. Créer un compte GitHub
+    Créer un repository
+    Exécuter un ensemble de code 
+        git clone url 
+		: créé le repertoire en local
+        cd rep : pour se positioniner dans le repertoire
+        On crée un fichier en tapant : 
+		touch hello.html
+        git add fichier: ajout du fichier
+        git commit -m "description de ce qu'on a fait":
+		 Permet la création d'une nouvelle version 
+        git status : présente le statut courant de notre repertoire
+        mettre dans gitub: git push
+        telecharger la dernière versions sur github: git pull
+        connaitre l'historique des commandes effectuées: git log
+        retourner aux version précédentes: git reset
+html
+    l'utilisation du pourcentage peut aider notre page a être responsive.
+    DOM: Document Object Model: est l'arbre que représente notre fichier
+*************************************
+Quick setup — if you’ve done this kind of thing before
+or
+
+Get started by creating a new file or uploading an existing file. We recommend every repository include a README, LICENSE, and .gitignore.
+…or create a new repository on the command line
+
+echo "# lecture0" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/mta12/lecture0.git
+git push -u origin master
+
+…or push an existing repository from the command line
+
+git remote add origin https://github.com/mta12/lecture0.git
+git push -u origin master
+
+…or import code from another repository
+
+You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
