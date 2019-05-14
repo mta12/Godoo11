@@ -1,1 +1,90 @@
 This is a git repository of MTA
+
+creation d'une nouvelle BD
+BD : devbd
+user: tobmang1@gmail.com
+pass: odoopassW
+
+le module python psycopg2 permet d'accéder à la BD postgres au port 5432
+
+Quelques astuces:
+-Sous Linux vérifier les services avec la commande : ps aux | grep Odoo  
+-sudo /etc/init.d/Odoo-server start : Démarre le service
+-sudo /etc/init.d/Odoo-server stop : Arrête le service
+-L’accès à {install directory}/server/server/Odoo-server.log permet d’identifier les problèmes que vous pourriez rencontrer pendant l’installation. 
+-Sous linux: /var/log/odoo/odoo-server.log
+-Trouver le fichier de configuration d’Odoo dans
+ /etc/Odoo/Odoo-server.conf ou odoo.conf sous linux
+-C:\Program Files (x86)\Odoo 11.0\server\odoo.conf sous windows
+-Utile pour modifier le port d’accès à Odoo par exemple en spécifiant : Port=[port] 
+-Accéder au système de gestion des BD avec : [ServerAddress]:[port]/web/database/manager
+-Par défaut, le mot de passe sous Odoo c’est admin, mais il peut être changé dans le fichier de configuration : Admin_password=[your password] 
+-En cas d’erreur 500 : Se connecter à la BD avec Pgadmin puis créer l’utilisateur et lui octroyer tous les droits.
+
+P142 : Managing Server Odoo Instances
+
+J'ai décidé de coder le module de gestion des vacataire pour ma formation
+voir dans mesmodulesOdoo/vacataire
+-Pour la mention catégorie dans le manifeste, la liste des catégories est accéssible via 
+le lien suivant: https://github.com/odoo/odoo/blob/11.0/odoo/addons/base/module/module_data.xml
+-la mention 'application' permet de définir ce module comme le principal pour qu'il soit apperçu 
+comme une application dans la liste d'odoo.
+- Mettre l'icone du module dans le dossier static/description/icon.png 
+-Les data files sont des XML, CSV, YAML
+- Dossier models: contient la logique métier du module voir chap5. Un fichier par modèle
+est recommendé. nom: fic_model.py pour le modèle fic.model
+- Dossier views: contient les fichiers XML qui contient les interfaces, actions, boutons,...
+Un fichier par modèle. Les noms des templates de site web doivent se terminer par 
+le suffix _template. backend views chap 10 et website view: chap16
+- data/ contient les fichiers de données
+- i18n/ contient les fichiers d'internationalisation .pot et .po pour les traductions
+- security contient les fichiers définissant les ACL (Access control Lists).
+ex: ir.model.access.csv. voir chap 11
+- controllers pour les controlleurs web voir chap 14
+- static tous les web assets y sont sauvegardés. voir chap 16
+
+Suite P297...Adding models
+-Ils définissent la structure des données qui seront utilisées par notre application
+-Ex: On veut un modèle qui représente des livres et chaque livre a une nom et 
+une liste d'auteurs
+-La création d'un nouveau modèle l'inclut dans le régistre central
+pour qu'il soit accéssible par les autres modules
+-Quand on cré un modèle on doit spécifier son nom avec _name
+pour le rendre uniquement identifiable
+-Les champs sont définis comme des attributs de classe à l'aide 
+de la classe fields
+-Il existe des relational field (author_ids) qui définit une relation 
+many to many entre Library book et partners (res.partner)
+
+Suite P303
+Adding Menu Items and Views
+-Créer un menu option pour chaque nouveau modèle
+-créer le fichier xml correspondant et l'ajouter au manifeste
+-créer l'action qui permet d'ouvrir la vue  avec <act_window />
+cette commande permet d'ouvrir la vue dans l'interface principale
+du user. 'name' définit le titre à afficher et 'res_model' définit le 
+modèle cible.
+-Mettre le menu item pour qu'il soit visible à l'utilisateur avec 
+<menuitem/>
+-Ajout d'une vue customisée : 
+-Les fénètres d'action sont sauvegardées dans ir.actions.act_window mais un 
+raccourcit consiste à utiliser la balise act_window
+-Les menus items sont sauvegardés dans ir.ui.menu mais en raccourcit on 
+utilise menuitem avec pour attribut: 'name' nom à afficher, 'action: identifiant
+de l'action à éxécuter dans notre cas l'ouverture de la fenêtre"
+'sequence' : l'ordre de présentation des items de meme niveau
+'parent':ici on spécifie les parents de notre item s'il yen a
+-Odoo met par défaut une vue de liste mais pour la controller, on créé
+nous même nos records ou vues qui héritent de 'ir.ui.view'
+'name':titre de la vue
+'model': ID du modèle cible telque définit dans l'attribut _name 
+-Les forms views sont définies avec l'élément <form>: des grilles de deux colonnes
+dedans on y trouve des <group> elements pour représenter verticallement
+2 groupe impliquent deux colonnes. field utilise un widget par défaut mais un 
+spécifique peut être définit en utilisant l'attribut widget.
+
+
+
+
+
+
